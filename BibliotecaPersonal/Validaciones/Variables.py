@@ -178,15 +178,3 @@ class ValidacionesUniversales():
 
         print(fecha)
         return fecha
-
-    def randomer_fc(c):
-
-        for i in range(c):
-            
-            fechaY = random.randint(1900,2023)
-            fechaM = random.randint(1,12)		
-            fechaD = random.randint(1,31)
-
-            fecha = str(fechaY) + "-" + str(fechaM) + "-" + str(fechaD)
-            
-            fc.append(fecha)
