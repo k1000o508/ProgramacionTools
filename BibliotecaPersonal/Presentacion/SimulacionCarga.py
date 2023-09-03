@@ -4,6 +4,8 @@ import os
 #Barra de carga
 import tqdm
 
+#Tiempo
+import time as t
 
 #_____________________________________________________________________Simulacion de carga_____________________________________________________________________
 
@@ -28,13 +30,6 @@ os.system('cls')
 
 # Close the progress bar.
 pbar.close()
-
-#Nombre del programa con la ayuda de pyfiglet
-text = pyfiglet.print_figlet(text="Gestion Ganadera",
-                             colors="WHITE",
-                             font="roman")
-
-t.sleep(5)
 
 os.system("cls")
 #_____________________________________________________________________Simulacion de carga_____________________________________________________________________
