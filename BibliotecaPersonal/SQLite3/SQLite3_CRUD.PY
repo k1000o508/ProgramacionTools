@@ -39,34 +39,48 @@ class UniversalCRUD():
 
 
     class ReadState():
-        def __init__(self,table):
-            self.table = table
 
-        def ReadAll(self):
-            c = conector.cursor()
-            c.execute("SELECT * FROM " + self.table + "")
-            rows = c.fetchall()
-            for row in rows:
-                print(row[0])
+    def __init__(self,table):
+        self.table = table
 
-        def ReadColumn(self):
-        
-            #Arreglar Error del fetchall()
-            c = conector.cursor()
-            c.execute("SELECT * FROM " + self.table + "")
-            rows = c.fetchall()
-            for row in rows:
-                print(row[0])
+    def ReadAll(self):
+        c = conector.cursor()
+        c.execute("SELECT * FROM " + self.table + "")
+        rows = c.fetchall()
 
+        #Coincidencias en el diccionario para poder identicar los valores
+        TemplateVerification = {}
 
-            #Arreglar Error del fetchall()
-            # c = conector.cursor()
-            # c.execute("SELECT * FROM " + self.table + " WHERE " + self.column + "= " + self.campo)
-            # rows = c.fetchall()
-            # for row in rows:
-            #     print(row)
+        for i in DictDiccitionaries:
+            if i == self.table:
+                TemplateVerification = DictDiccitionaries[i]
 
-            # c.close()
+        #Tabulate formate table 
+        tabu = tabulate.tabulate(rows,headers=TemplateVerification.keys(),tablefmt=fontStyle,numalign="center",stralign="center")
+        print(tabu)
+
+    def ReadColumn(self):
+        c = conector.cursor()
+        c.execute("SELECT * FROM " + self.table + "")
+        rows = c.fetchall()
+
+        #Coincidencias en el diccionario para poder identicar los valores
+        TemplateVerification = {}
+
+        for i in DictDiccitionaries:
+            if i == self.table:
+                TemplateVerification = DictDiccitionaries[i]
+
+        print(len(rows))
+
+        IdOption = numeric(input("Registro especifico(ID) : "),1,len(rows))
+
+        #Arreglar Error del fetchall()
+        c = conector.cursor()
+        c.execute("SELECT * FROM " + self.table + " WHERE ID = '"+ IdOption +"'")
+        rows = c.fetchall()
+        tabu = tabulate.tabulate(rows,headers=TemplateVerification.keys(),tablefmt=fontStyle,numalign="center",stralign="center")
+        print(tabu)
             
 
     class UpdateState():
